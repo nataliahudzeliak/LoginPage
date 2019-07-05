@@ -29,9 +29,12 @@ class ViewController: UIViewController {
         
         if UserDefaults.standard.object(forKey: UserDefaults.KeysUser.currentUser) != nil {
             loadUserInfo()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController else { return }
-            navigationController?.pushViewController(controller, animated: true)
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController else { return }
+                self.navigationController?.pushViewController(controller, animated: false)
+            }
+           
         } else {
             setUpStackView()
             setUpGestures()
