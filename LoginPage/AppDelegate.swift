@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
-
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let user = UserEntity()
+                user.phoneNumber = "+380961235555"
+                user.password = "test"
+                realm.add(user)
+                try realm.commitWrite()
+            }
+        } catch {
+            print(error)
+        }
         return true
     }
    

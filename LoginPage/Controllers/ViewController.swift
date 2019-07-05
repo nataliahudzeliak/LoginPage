@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         if UserDefaults.standard.object(forKey: UserDefaults.KeysUser.currentUser) != nil {
             loadUserInfo()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController
-            navigationController?.pushViewController(controller!, animated: true)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController else { return }
+            navigationController?.pushViewController(controller, animated: true)
         } else {
             setUpStackView()
             setUpGestures()
@@ -41,25 +41,8 @@ class ViewController: UIViewController {
             registrationTextView.delegate = self
             registrationTextView.isSelectable = true
         }
-//      let realm = try! Realm()
-//         print(realm.objects(UserEntity.self))
-//
-//        try! realm.write {
-//            let user = UserEntity()
-//            user.phoneNumber = "+380961235555"
-//            user.password = "test"
-//            realm.add(user)
-//              try! realm.commitWrite()
-//        }
-//
-//        print(realm.objects(UserEntity.self))
-//       try! realm.write {
-//
-//
-//        realm.delete(realm.objects(UserEntity.self))
-//        }
-//        print(realm.objects(UserEntity.self))
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -142,8 +125,8 @@ class ViewController: UIViewController {
             loadUserInfo()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController
-            navigationController?.pushViewController(controller!, animated: true)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController else { return }
+            navigationController?.pushViewController(controller, animated: true)
         } else {
             errorView.isHidden = false
         }

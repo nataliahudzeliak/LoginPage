@@ -16,13 +16,14 @@ class SuccessLogInViewController: UIViewController {
     @IBOutlet private weak var lastNameLabel: UILabel!
     
     static var identifier = "SuccessPageViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpView()
         self.navigationItem.setHidesBackButton(true, animated: true)
-     
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

@@ -153,7 +153,7 @@
                                 <color key="textColor" red="0.78422755002975464" green="0.78436332941055298" blue="0.78421896696090698" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in  with social network" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTC-cM-bfW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in  with social networks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTC-cM-bfW">
                                 <rect key="frame" x="16" y="410" width="288" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="ajz-QS-cVL"/>
