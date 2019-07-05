@@ -21,8 +21,9 @@ class NetworkManager {
     private let url = "https://reqres.in/api/users/2"
     
     func getInfoAboutUser(completion: @escaping (User?, Error?) -> Void) {
-        guard let allChannelsUrl = URL(string: url) else {return}
-        var request = URLRequest(url: allChannelsUrl)
+        let sem = DispatchSemaphore(value: 0)
+        guard let userInfoUrl = URL(string: url) else {return}
+        var request = URLRequest(url: userInfoUrl)
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request) {
@@ -33,11 +34,13 @@ class NetworkManager {
             }
             do {
                 let dataAboutUser = try JSONDecoder().decode(userData.self, from: data)
+                sem.signal()
                 completion(dataAboutUser.data,nil)
             }
             catch {
                 completion(nil,error)
             }
         }.resume()
+        sem.wait(timeout: .distantFuture)
     }
 }

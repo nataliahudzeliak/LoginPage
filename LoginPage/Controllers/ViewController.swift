@@ -29,11 +29,10 @@ class ViewController: UIViewController {
         
         if UserDefaults.standard.object(forKey: UserDefaults.KeysUser.currentUser) != nil {
             loadUserInfo()
-            DispatchQueue.main.async {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController else { return }
-                self.navigationController?.pushViewController(controller, animated: false)
-            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController else { return }
+            self.navigationController?.pushViewController(controller, animated: false)
+        
            
         } else {
             setUpStackView()
@@ -63,12 +62,13 @@ class ViewController: UIViewController {
     }
     
     private func loadUserInfo() {
-        NetworkManager.sharedInstance().getInfoAboutUser { (user, error) in
-            guard let user = user else { return }
-            UserInfoManager.sharedInstance().currentUser = user
+        
+    NetworkManager.sharedInstance().getInfoAboutUser { (user, error) in
+        guard let user = user else { return }
+        UserInfoManager.sharedInstance().currentUser = user
         }
     }
-    
+
     private func prepareTextView() {
         let youDontHaveAcount = "Do not have an account?"
         let registration = " Sign up"
