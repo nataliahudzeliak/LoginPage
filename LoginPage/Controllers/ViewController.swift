@@ -72,6 +72,8 @@ class ViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
         NotificationCenter.default.removeObserver(self)
+        phoneNumberTextField.text = ""
+        passwordTextField.text = ""
     }
     
     private func loadUserInfo() {
@@ -142,13 +144,13 @@ class ViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: SuccessLogInViewController.identifier) as? SuccessLogInViewController
             navigationController?.pushViewController(controller!, animated: true)
-                UserDefaults.standard.set(UserInfoManager.sharedInstance().currentUser?.id, forKey: UserDefaults.KeysUser.currentUser)
         } else {
             errorView.isHidden = false
         }
     }
     
     @objc private func textDidChange(_ notification: Notification) {
+        errorView.isHidden = true
         if checkTextField(passwordTextField) && checkTextField(phoneNumberTextField) {
             continueView.backgroundColor = #colorLiteral(red: 0.1943908036, green: 0.5265156627, blue: 0.842076242, alpha: 1)
         } else {

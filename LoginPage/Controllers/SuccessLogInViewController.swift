@@ -21,14 +21,19 @@ class SuccessLogInViewController: UIViewController {
 
         setUpView()
         self.navigationItem.setHidesBackButton(true, animated: true)
+     
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+       UserDefaults.standard.set(UserInfoManager.sharedInstance().currentUser?.id, forKey: UserDefaults.KeysUser.currentUser)
     }
     
     private func setUpView() {
         guard let currentUser = UserInfoManager.sharedInstance().currentUser else { return }
-        emailLabel.text = currentUser.email
-        firstNameLabel.text = currentUser.firstName
-        lastNameLabel.text = currentUser.lastName
+        emailLabel.text = "Email: \(currentUser.email)"
+        firstNameLabel.text = "First Name: \(currentUser.firstName)"
+        lastNameLabel.text = "Last Name: \(currentUser.lastName)"
         guard let validUrlForImage = URL(string: currentUser.avatar) else { return }
         imageView.load(url: validUrlForImage)
     }
